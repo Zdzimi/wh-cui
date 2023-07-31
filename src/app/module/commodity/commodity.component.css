@@ -1,0 +1,50 @@
+#container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#commodity {
+  margin: 40px;
+}
+
+table {
+  border: 1px solid black;
+}
+
+td, th {
+  padding: 10px;
+  border: 1px solid black;
+}
+
+th {
+  background-color: cadetblue;
+}
+
+.odd {
+  background-color: lightgrey;
+}
+
+.even {
+  background-color: aliceblue;
+}
+
+.pz {
+  background-color: greenyellow;
+
+}
+
+.num {
+  text-align: right;
+}
+
+a {
+  color: mediumvioletred;
+  text-decoration: none;
+}
+
+a:hover {
+  cursor: pointer;
+  color: olive;
+}

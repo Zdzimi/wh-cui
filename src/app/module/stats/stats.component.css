@@ -1,0 +1,63 @@
+h5 {
+  color: red;
+}
+
+#candidates {
+  display: flex;
+  justify-content: space-around;
+  align-items: start;
+}
+
+#order, #discount {
+  width: 50%;
+}
+
+#order > tr > th {
+  background-color: darkgreen;
+  color: white;
+}
+
+#order > h4 {
+  color: darkgreen;
+}
+
+#order > tr:nth-child(even) {
+  background-color: lightgreen;
+}
+
+#discount > tr > th {
+  background-color: darkred;
+  color: white;
+}
+
+#discount > h4 {
+  color: darkred;
+}
+
+#discount > tr:nth-child(even) {
+  background-color: lightcoral;
+}
+
+input {
+  text-align: center;
+  width: 80px;
+}
+
+th, td {
+  padding: 5px;
+  text-align: center;
+}
+
+.num {
+  text-align: right;
+}
+
+a {
+  color: mediumvioletred;
+  text-decoration: none;
+}
+
+a:hover {
+  cursor: pointer;
+  color: yellow;
+}

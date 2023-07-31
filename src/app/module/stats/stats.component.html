@@ -1,0 +1,59 @@
+<form>
+  <h4>
+    Aktualna ilość mniejsza niż
+    <input type="number" [(ngModel)]="lessThan" name="lessThan" />
+    % sprzedaży, oraz większa niż
+    <input type="number" [(ngModel)]="moreThan" name="moreThan" />
+    % sprzedaży w ciągu ostatnich
+    <input type="number" [(ngModel)]="days" name="days" />
+    dni.
+    <button (click)="getStats()">szukaj</button>
+  </h4>
+  <h5 *ngIf="lessViolation">{{ lessViolation }}</h5>
+  <h5 *ngIf="moreViolation">{{ moreViolation }}</h5>
+  <h5 *ngIf="daysViolation">{{ daysViolation }}</h5>
+  <h5 *ngIf="dataViolation">{{ dataViolation }}</h5>
+</form>
+
+<div id="candidates" *ngIf="candidates">
+  <table id="order">
+    <h4>Do zamówienia:</h4>
+    <tr>
+      <th>id</th>
+      <th>nazwa</th>
+      <th>netto</th>
+      <th>brutto</th>
+      <th>sprzedaż</th>
+      <th>ilość</th>
+    </tr>
+    <tr *ngFor="let o of candidates.order">
+      <td class="num"><a routerLink="/commodity/{{ o.id }}">{{ o.id }}</a></td>
+      <td>{{ o.name }}</td>
+      <td class="num">{{ o.netPrice | number: '1.2-2' }}</td>
+      <td class="num">{{ o.grossPrice | number: '1.2-2' }}</td>
+      <td class="num">{{ o.sales }}</td>
+      <td class="num">{{ o.amount }}</td>
+    </tr>
+  </table>
+
+  <table id="discount">
+    <h4>Do przeceny:</h4>
+    <tr>
+      <th>id</th>
+      <th>nazwa</th>
+      <th>netto</th>
+      <th>brutto</th>
+      <th>sprzedaż</th>
+      <th>ilość</th>
+    </tr>
+    <tr *ngFor="let d of candidates.discount">
+      <td class="num"><a routerLink="/commodity/{{ d.id }}">{{ d.id }}</a></td>
+      <td>{{ d.name }}</td>
+      <td class="num">{{ d.netPrice | number: '1.2-2' }}</td>
+      <td class="num">{{ d.grossPrice | number: '1.2-2' }}</td>
+      <td class="num">{{ d.sales }}</td>
+      <td class="num">{{ d.amount }}</td>
+    </tr>
+  </table>
+
+</div>

@@ -1,0 +1,22 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#container {
+  height: 100vh;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  color: mediumvioletred;
+  text-decoration: none;
+}
+
+a:hover {
+  cursor: pointer;
+  color: olive;
+}
