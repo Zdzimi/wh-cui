@@ -13,6 +13,7 @@ export class StatsComponent {
   days = 30;
   lessThan = 30;
   moreThan = 70;
+  procedingData = false;
   candidates: OrderOrDiscountCandidates | undefined;
   daysViolation: string | undefined;
   lessViolation: string | undefined;
@@ -22,11 +23,14 @@ export class StatsComponent {
   constructor(private httpService: HttpService) { }
 
   getStats(): void {
+    this.candidates = undefined;
     this.clearViolations();
     this.setViolation();
     if (this.thereAreNoViolations()) {
+      this.procedingData = true;
       this.httpService.getStats(`?days=${this.days}&lessThan=${this.lessThan}&moreThan=${this.moreThan}`).subscribe(
         res => {
+          this.procedingData = false;
           this.candidates = res;
         },
         err => {

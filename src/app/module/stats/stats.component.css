@@ -1,3 +1,10 @@
+#container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 h5 {
   color: red;
 }
@@ -60,4 +67,10 @@ a {
 a:hover {
   cursor: pointer;
   color: yellow;
+}
+
+#procedingData {
+  padding: 40px;
+  background-color: cadetblue;
+  color: aliceblue;
 }

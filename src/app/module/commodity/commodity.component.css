@@ -5,6 +5,15 @@
   align-items: center;
 }
 
+.num {
+  text-align: right;
+}
+
+#xxx {
+  display: flex;
+  justify-content: space-between;
+}
+
 #commodity {
   margin: 40px;
 }
@@ -31,8 +40,15 @@ th {
 }
 
 .pz {
-  background-color: greenyellow;
+  background-color: lightseagreen;
+}
 
+.pz-good {
+  background-color: greenyellow;
+}
+
+.pz-bad {
+  background-color: orangered;
 }
 
 .num {
@@ -40,6 +56,7 @@ th {
 }
 
 a {
+  margin: 40px;
   color: mediumvioletred;
   text-decoration: none;
 }

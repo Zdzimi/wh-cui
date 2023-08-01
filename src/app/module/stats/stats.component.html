@@ -15,6 +15,10 @@
   <h5 *ngIf="dataViolation">{{ dataViolation }}</h5>
 </form>
 
+<div id="procedingData" *ngIf="procedingData">
+  <h1>Przetwarzam dane... Proszę czekać.</h1>
+</div>
+
 <div id="candidates" *ngIf="candidates">
   <table id="order">
     <h4>Do zamówienia:</h4>
@@ -47,7 +51,9 @@
       <th>ilość</th>
     </tr>
     <tr *ngFor="let d of candidates.discount">
-      <td class="num"><a routerLink="/commodity/{{ d.id }}">{{ d.id }}</a></td>
+      <td class="num">
+        <a routerLink="/commodity/{{ d.id }}?days={{ days }}&lessThan={{ lessThan }}&moreThan={{ moreThan }}">{{ d.id }}</a>
+      </td>
       <td>{{ d.name }}</td>
       <td class="num">{{ d.netPrice | number: '1.2-2' }}</td>
       <td class="num">{{ d.grossPrice | number: '1.2-2' }}</td>
@@ -57,3 +63,4 @@
   </table>
 
 </div>
+

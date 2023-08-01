@@ -1,4 +1,3 @@
-import { Document } from './../../model/document';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -12,6 +11,7 @@ import { HttpService } from 'src/app/service/http.service';
 })
 export class CommodityComponent implements OnInit {
 
+  allReceiptsVisible = true;
   commodity: Commodity | undefined;
   commodityNotFound: string | undefined;
 
@@ -36,6 +36,10 @@ export class CommodityComponent implements OnInit {
         }
       );
     });
+  }
+
+  showOrHide() {
+    this.allReceiptsVisible = !this.allReceiptsVisible;
   }
 
 }
