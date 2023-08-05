@@ -1,4 +1,4 @@
-#container {
+.container-center {
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -10,12 +10,21 @@
 }
 
 #xxx {
+  background-color: white;
+  height: 17vh;
+  position: sticky;
+  top: 0;
   display: flex;
   justify-content: space-between;
 }
 
-#commodity {
-  margin: 40px;
+#stats {
+  width: 100%;
+}
+
+#header {
+  position: sticky;
+  top: 17vh;
 }
 
 table {

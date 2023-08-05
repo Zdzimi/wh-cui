@@ -1,19 +1,6 @@
-<form>
-  <h4>
-    Aktualna ilość mniejsza niż
-    <input type="number" [(ngModel)]="lessThan" name="lessThan" />
-    % sprzedaży, oraz większa niż
-    <input type="number" [(ngModel)]="moreThan" name="moreThan" />
-    % sprzedaży w ciągu ostatnich
-    <input type="number" [(ngModel)]="days" name="days" />
-    dni.
-    <button (click)="getStats()">szukaj</button>
-  </h4>
-  <h5 *ngIf="lessViolation">{{ lessViolation }}</h5>
-  <h5 *ngIf="moreViolation">{{ moreViolation }}</h5>
-  <h5 *ngIf="daysViolation">{{ daysViolation }}</h5>
-  <h5 *ngIf="dataViolation">{{ dataViolation }}</h5>
-</form>
+<h3>
+  <a routerLink="/">STRONA DOMOWA</a>
+</h3>
 
 <div id="procedingData" *ngIf="procedingData">
   <h1>Przetwarzam dane... Proszę czekać.</h1>
@@ -23,7 +10,7 @@
   <table id="order">
     <h4>Do zamówienia:</h4>
     <tr>
-      <th>id</th>
+      <th>kod</th>
       <th>nazwa</th>
       <th>netto</th>
       <th>brutto</th>
@@ -31,7 +18,9 @@
       <th>ilość</th>
     </tr>
     <tr *ngFor="let o of candidates.order">
-      <td class="num"><a routerLink="/commodity/{{ o.id }}">{{ o.id }}</a></td>
+      <td class="num">
+        <a routerLink="/commodity/d/{{ days }}/l/{{ lessThan }}/m/{{ moreThan }}/{{ o.id }}">{{ o.code }}</a>
+      </td>
       <td>{{ o.name }}</td>
       <td class="num">{{ o.netPrice | number: '1.2-2' }}</td>
       <td class="num">{{ o.grossPrice | number: '1.2-2' }}</td>
@@ -43,7 +32,7 @@
   <table id="discount">
     <h4>Do przeceny:</h4>
     <tr>
-      <th>id</th>
+      <th>kod</th>
       <th>nazwa</th>
       <th>netto</th>
       <th>brutto</th>
@@ -52,7 +41,7 @@
     </tr>
     <tr *ngFor="let d of candidates.discount">
       <td class="num">
-        <a routerLink="/commodity/{{ d.id }}?days={{ days }}&lessThan={{ lessThan }}&moreThan={{ moreThan }}">{{ d.id }}</a>
+        <a routerLink="/commodity/d/{{ days }}/l/{{ lessThan }}/m/{{ moreThan }}/{{ d.id }}">{{ d.code }}</a>
       </td>
       <td>{{ d.name }}</td>
       <td class="num">{{ d.netPrice | number: '1.2-2' }}</td>
@@ -63,4 +52,3 @@
   </table>
 
 </div>
-

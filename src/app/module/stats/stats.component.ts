@@ -1,5 +1,6 @@
+import { ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { OrderOrDiscountCandidates } from 'src/app/model/orderOrDiscountCandidates';
 import { HttpService } from 'src/app/service/http.service';
 
@@ -8,29 +9,27 @@ import { HttpService } from 'src/app/service/http.service';
   templateUrl: './stats.component.html',
   styleUrls: ['./stats.component.css']
 })
-export class StatsComponent {
+export class StatsComponent implements OnInit {
 
-  days = 30;
-  lessThan = 30;
-  moreThan = 70;
-  procedingData = false;
+  days: string | null = null;
+  lessThan: string | null = null;
+  moreThan: string | null = null;
+  procedingData = true;
   candidates: OrderOrDiscountCandidates | undefined;
-  daysViolation: string | undefined;
-  lessViolation: string | undefined;
-  moreViolation: string | undefined;
-  dataViolation: string | undefined;
 
-  constructor(private httpService: HttpService) { }
+  constructor(
+    private httpService: HttpService,
+    private activatedRoute: ActivatedRoute
+  ) { }
 
-  getStats(): void {
-    this.candidates = undefined;
-    this.clearViolations();
-    this.setViolation();
-    if (this.thereAreNoViolations()) {
-      this.procedingData = true;
+  ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe(params => {
+      this.days = params.get('days');
+      this.lessThan = params.get('lessThan');
+      this.moreThan = params.get('moreThan');
       this.httpService.getStats(`?days=${this.days}&lessThan=${this.lessThan}&moreThan=${this.moreThan}`).subscribe(
         res => {
-          this.procedingData = false;
+          this.procedingData = false
           this.candidates = res;
         },
         err => {
@@ -39,32 +38,7 @@ export class StatsComponent {
           }
         }
       );
-    }
+    });
   }
 
-  thereAreNoViolations(): boolean {
-    return !this.daysViolation && !this.lessViolation && !this.moreViolation && !this.dataViolation;
-  }
-
-  clearViolations(): void {
-    this.daysViolation = undefined;
-    this.lessViolation = undefined;
-    this.moreViolation = undefined;
-    this.dataViolation = undefined;
-  }
-
-  setViolation(): void {
-    if (this.days < 1) {
-      this.daysViolation = "minimalna ilość dni to 1";
-    }
-    if (this.lessThan < 1) {
-      this.lessViolation = "minimalna wartość mniejsza niż to 1";
-    }
-    if (this.moreThan < 0) {
-      this.moreViolation = "minimalna wartość większa niż to 0";
-    }
-    if (this.moreThan < this.lessThan) {
-      this.dataViolation = "wartość większa niż musi być nie mniejsza od wartości mniejsza niż";
-    }
-  }
 }

@@ -8,13 +8,15 @@ import { StatsComponent } from './module/stats/stats.component';
 import { PageNotFoundComponent } from './module/page-not-found/page-not-found.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './module/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CommodityComponent,
     StatsComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HomeComponent
   ],
   imports: [
     FormsModule,

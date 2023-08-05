@@ -1,0 +1,16 @@
+<form>
+  <h4>
+    Aktualna ilość mniejsza niż
+    <input type="number" [(ngModel)]="lessThan" name="lessThan" />
+    % sprzedaży, oraz większa niż
+    <input type="number" [(ngModel)]="moreThan" name="moreThan" />
+    % sprzedaży w ciągu ostatnich
+    <input type="number" [(ngModel)]="days" name="days" />
+    dni.
+    <button (click)="getStats()">szukaj</button>
+  </h4>
+  <h5 *ngIf="lessViolation">{{ lessViolation }}</h5>
+  <h5 *ngIf="moreViolation">{{ moreViolation }}</h5>
+  <h5 *ngIf="daysViolation">{{ daysViolation }}</h5>
+  <h5 *ngIf="dataViolation">{{ dataViolation }}</h5>
+</form>

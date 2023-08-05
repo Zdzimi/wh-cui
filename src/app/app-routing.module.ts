@@ -3,19 +3,24 @@ import { RouterModule, Routes } from '@angular/router';
 import { StatsComponent } from './module/stats/stats.component';
 import { CommodityComponent } from './module/commodity/commodity.component';
 import { PageNotFoundComponent } from './module/page-not-found/page-not-found.component';
+import { HomeComponent } from './module/home/home.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'warehouse',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
-    path: 'warehouse',
+    path: 'home',
+    component: HomeComponent
+  },
+  {
+    path: 'warehouse/d/:days/l/:lessThan/m/:moreThan',
     component: StatsComponent
   },
   {
-    path: 'commodity/:id',
+    path: 'commodity/d/:days/l/:lessThan/m/:moreThan/:id',
     component: CommodityComponent
   },
   {

@@ -1,10 +1,13 @@
-<div id="container">
+<div [ngClass]="{'container-center': !commodity}">
   <div>
     <div id="xxx">
       <h3>
-        <a routerLink="/">POWRÓT</a>
+        <a routerLink="/">STRONA DOMOWA</a>
       </h3>
-      <table id="commodity" *ngIf="commodity">
+      <h3>
+        <a routerLink="/warehouse/d/{{ days }}/l/{{ lessThan }}/m/{{ moreThan }}">MAGAZYN</a>
+      </h3>
+      <table *ngIf="commodity">
         <tr>
           <th>ID</th>
           <th>NAZWA</th>
@@ -30,23 +33,23 @@
         <a *ngIf="!allReceiptsVisible && commodity" (click)="showOrHide()">WSZYSTKIE</a>
         <a *ngIf="allReceiptsVisible && commodity" (click)="showOrHide()">PZ</a>
       </h3>
-    </div>
-    <table *ngIf="commodity">
-      <tr>
-        <th>dok_id</th>
-        <th>dok_kol</th>
-        <th>data</th>
-        <th>kod</th>
-        <th>typ</th>
-        <th>ilość +</th>
-        <th>ilość -</th>
-        <th>stan przed</th>
-        <th>stan po</th>
-        <th>min % sprzedaży</th>
-        <th>max % sprzedaży</th>
-        <th>sprzedaż</th>
-        <th>stan*100/sprzedaż</th>
-      </tr>
+  </div>
+  <table id="stats" *ngIf="commodity">
+    <tr id="header">
+      <th>dok_id</th>
+      <th>dok_kol</th>
+      <th>data</th>
+      <th>kod</th>
+      <th>typ</th>
+      <th>ilość +</th>
+      <th>ilość -</th>
+      <th>stan przed</th>
+      <th>stan po</th>
+      <th>min % sprzedaży</th>
+      <th>max % sprzedaży</th>
+      <th>sprzedaż</th>
+      <th>stan*100/sprzedaż</th>
+    </tr>
       <ng-container *ngFor="let d of commodity.receipts; let i = index" >
         <tr *ngIf="allReceiptsVisible || d.type === 2" [ngClass]="{'pz': d.type === 2, 'odd': i % 2 !== 0, 'even': i % 2 === 0}">
           <td>{{ d.documentId }}</td>
@@ -59,20 +62,16 @@
           <td class="num">{{ d.amountBeforeReceipt }}</td>
           <td class="num">{{ d.amountAfterReceipt }}</td>
           <td class="num" [ngClass]="{'pz-good': d.lowerPartOfSales && d.amountBeforeReceipt <= d.lowerPartOfSales, 'pz-bad': d.higherPartOfSales && d.amountBeforeReceipt >= d.higherPartOfSales}">
-            <span *ngIf="d.lowerPartOfSales">{{ d.lowerPartOfSales }}</span>
-            <span *ngIf="!d.lowerPartOfSales">-</span>
+            {{ d.lowerPartOfSales }}
           </td>
           <td class="num" [ngClass]="{'pz-good': d.lowerPartOfSales && d.amountBeforeReceipt <= d.lowerPartOfSales, 'pz-bad': d.higherPartOfSales && d.amountBeforeReceipt >= d.higherPartOfSales}">
-            <span *ngIf="d.higherPartOfSales">{{ d.higherPartOfSales }}</span>
-            <span *ngIf="!d.higherPartOfSales">-</span>
+            {{ d.higherPartOfSales }}
           </td>
           <td class="num" [ngClass]="{'pz-good': d.lowerPartOfSales && d.amountBeforeReceipt <= d.lowerPartOfSales, 'pz-bad': d.higherPartOfSales && d.amountBeforeReceipt >= d.higherPartOfSales}">
-            <span *ngIf="d.sales">{{ d.sales }}</span>
-            <span *ngIf="!d.sales">-</span>
+            {{ d.sales }}
           </td>
           <td class="num" [ngClass]="{'pz-good': d.lowerPartOfSales && d.amountBeforeReceipt <= d.lowerPartOfSales, 'pz-bad': d.higherPartOfSales && d.amountBeforeReceipt >= d.higherPartOfSales}">
-            <span *ngIf="d.partOfSales">{{ d.partOfSales | number: '1.2-2' }}</span>
-            <span *ngIf="!d.partOfSales">-</span>
+            {{ d.partOfSales | number: '1.2-2' }}
           </td>
         </tr>
       </ng-container>

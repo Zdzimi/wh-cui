@@ -11,6 +11,10 @@ import { HttpService } from 'src/app/service/http.service';
 })
 export class CommodityComponent implements OnInit {
 
+  days: string | null = null;
+  lessThan: string | null = null;
+  moreThan: string | null = null;
+  commodityId: string | null = null;
   allReceiptsVisible = true;
   commodity: Commodity | undefined;
   commodityNotFound: string | undefined;
@@ -22,7 +26,13 @@ export class CommodityComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
-      this.httpService.getCommodity(params.get('id')).subscribe(
+      this.days = params.get('days');
+      this.lessThan = params.get('lessThan');
+      this.moreThan = params.get('moreThan');
+      this.commodityId = params.get('id');
+      this.httpService.getCommodity(
+        `${this.commodityId}?days=${this.days}&lessThan=${this.lessThan}&moreThan=${this.moreThan}`
+      ).subscribe(
         res => {
           this.commodity = res;
         },
