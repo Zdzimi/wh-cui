@@ -61,16 +61,16 @@
           <td class="num">{{ d.decreased }}</td>
           <td class="num">{{ d.amountBeforeReceipt }}</td>
           <td class="num">{{ d.amountAfterReceipt }}</td>
-          <td class="num" [ngClass]="{'pz-good': d.lowerPartOfSales && d.amountBeforeReceipt <= d.lowerPartOfSales, 'pz-bad': d.higherPartOfSales && d.amountBeforeReceipt >= d.higherPartOfSales}">
+          <td class="num" [ngClass]="{'pz-good': d.lowerPartOfSales !== undefined && d.amountAfterReceipt <= d.lowerPartOfSales, 'pz-bad': d.higherPartOfSales !== undefined && d.amountAfterReceipt >= d.higherPartOfSales}">
             {{ d.lowerPartOfSales }}
           </td>
-          <td class="num" [ngClass]="{'pz-good': d.lowerPartOfSales && d.amountBeforeReceipt <= d.lowerPartOfSales, 'pz-bad': d.higherPartOfSales && d.amountBeforeReceipt >= d.higherPartOfSales}">
+          <td class="num" [ngClass]="{'pz-good': d.lowerPartOfSales !== undefined && d.amountAfterReceipt <= d.lowerPartOfSales, 'pz-bad': d.higherPartOfSales !== undefined && d.amountAfterReceipt >= d.higherPartOfSales}">
             {{ d.higherPartOfSales }}
           </td>
-          <td class="num" [ngClass]="{'pz-good': d.lowerPartOfSales && d.amountBeforeReceipt <= d.lowerPartOfSales, 'pz-bad': d.higherPartOfSales && d.amountBeforeReceipt >= d.higherPartOfSales}">
+          <td class="num" [ngClass]="{'pz-good': d.lowerPartOfSales !== undefined && d.amountAfterReceipt <= d.lowerPartOfSales, 'pz-bad': d.higherPartOfSales !== undefined && d.amountAfterReceipt >= d.higherPartOfSales}">
             {{ d.sales }}
           </td>
-          <td class="num" [ngClass]="{'pz-good': d.lowerPartOfSales && d.amountBeforeReceipt <= d.lowerPartOfSales, 'pz-bad': d.higherPartOfSales && d.amountBeforeReceipt >= d.higherPartOfSales}">
+          <td class="num" [ngClass]="{'pz-good': d.lowerPartOfSales !== undefined && d.amountAfterReceipt <= d.lowerPartOfSales, 'pz-bad': d.higherPartOfSales !== undefined && d.amountAfterReceipt >= d.higherPartOfSales}">
             {{ d.partOfSales | number: '1.2-2' }}
           </td>
         </tr>
